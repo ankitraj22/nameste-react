@@ -1,0 +1,237 @@
+Q) What is Emmet?
+-> Emmet basically generates some code for you. Visual studio uses Emmet.
+
+Q) What is cross origin in script tag?
+-> CORS stands for Cross-Origin Resource Sharing, and is a mechanism that 
+allows resources on a web page to be requested from another domain outside 
+their own domain.
+
+Q) What is a react element?
+-> React element is an object and it becomes an html that the browser understands.
+
+React.createElement(...) -> it creates an object for me.
+
+While it is rendering on the Dom, it converts itself into an HTML and 
+Puts it up into the Dom.
+
+Q) Does the order of execution matters?
+-> yes it matters.
+
+Q) React library or framework?
+-> We call react as a library 📚 & not framework because it can be applied to 
+a small portion of the existing code also.
+
+React is just a javascript library.
+
+Q) What is npm?
+-> npm doesn't stand for node package manager. It doesn't have any full form.
+npm is a package manager from java script. It manages package.
+
+Command npm init
+
+Q) What is a pacrcel?
+-> It is a bundler.
+A bundler is a development tool that combines many JavaScript code files 
+into a single one that is production-ready loadable in the browser
+
+It is installed with this command rpm install -D parcel
+
+Where -D tells us that we need it as dev dependency and not a normal dependency.
+
+Q) What all things does parcel does for you?
+Read at parceljs.org
+
+1. It created a dev build for you.
+2. It creates a local server for you, it hosts your app to the server.
+3. It does HMR = Hot Module replacement.
+4. It uses a File Watching Algorithm for doing the HMR.
+5. Caching for faster builds.
+6. Image Optimization.
+7. Magnification of files.
+8. Bundling
+9. Compress the file to smaller size, it will remove all the white spaces from the code, it will minify and pack all the JavaScript files and ship it on to production.
+10. Consistent Hashing
+11. Code Splitting 
+12. Differential Bundling -> Support for older browsers.
+13. Diagnostic 
+14. Error Handling -> Gives better error suggestions 
+15. Supports HTTPs -> npc parcel index.html --https -> it will load in https mode
+16. Tree Shaking - remove unused code.
+17. Creates a different dev and production bundles. 
+For normal dev build we do npx parcel index.html -> after the build is created it is hosted to localhost:1234 and then puts it up to the dist folder.
+For production build we do npx parcel build index.html
+
+
+Q) Types of dependencies defined in npm.
+-> A dependency is a library that a project needs to function effectively.
+
+There are actually five different dependency types defined by npm:
+1. normal dependencies. -> normal dependencies are packages that are required for an application to run in both development and production environments. 
+
+2. dev dependencies. -> devDependencies are the packages a developer needs during development.
+
+3. peer dependencies. -> Dependencies that your app relies on but expects another package to provide.
+
+4. optional dependencies. -> Dependencies that are not critical for the execution of the library 
+
+5. bundled dependencies. -> Dependencies that are packaged directly with your module 
+
+Q) How to install dependencies: 
+-> When you run npm install, npm looks at the dependencies object in your package.json file and automatically installs all the dependencies listed there
+
+Q) Why are dependencies important?
+-> Dependencies are required for your project to function as intended when deployed. 
+
+Q) What is package.json?
+https://www.geeksforgeeks.org/difference-between-package-json-and-package-lock-json-files/
+
+You can initialize the node project by running the below command:
+
+npm init
+
+
+-> It is the main configuration file in a Node project which describes the project metadata, dependencies, scripts and other required 
+configurations. 
+
+It shows the packages and their versions being used in the project. It also categorises packages based on usage like dependencies for 
+production, devDependencies for development environment.
+
+Q) What is package.lock.json?
+https://www.geeksforgeeks.org/difference-between-package-json-and-package-lock-json-files/
+
+the package.lock file on the other hand provides the snapshot of all the dependencies and sub-dependencies with exact versions. 
+It locks the versions for the consistent project setup across different environments.
+
+
+#### package-lock.json is crucial for locking dependencies to specific versions, ensuring consistent installations across different environments. 
+Without it, variations in installed versions may occur. This file guarantees reproducibility by specifying exact versions, preventing discrepancies. 
+Including both package.json and package-lock.json in source control ensures that collaborators install the exact dependencies, maintaining uniformity.
+
+Q) Commands
+
+npm init -> 
+
+Initializes a new Node.js project by creating a package.json file.
+This file stores metadata about the project, dependencies, scripts, etc.
+
+You can use:
+npm init → Interactive mode (asks for project details).
+npm init -y → Skips questions and uses default values.
+
+
+npm install (or npm i) ->
+
+Installs all dependencies listed in package.json.
+
+You can also use it to install specific packages:
+npm install <package-name> → Installs a package locally.
+npm install -g <package-name> → Installs globally.
+npm install <package-name> --save-dev → Installs as a dev dependency.
+
+
+npm start
+
+Runs the start script defined in package.json.
+
+
+Q) Caret and tilde in package.json?
+In package.json, the caret (^) and tilde (~) are used for specifying dependency versions, but they behave differently when updating packages.
+
+1. Caret (^)
+
+"dependencies": {
+  "express": "^4.17.1"
+}
+
+
+What it means:
+Allows updates for minor and patch versions but not major versions.
+Example: ^4.17.1 will allow updates up to 4.x.x, but not 5.0.0.
+This follows semantic versioning:
+Major (4.x.x) – Breaking changes
+Minor (x.17.x) – New features (backward-compatible)
+Patch (x.x.1) – Bug fixes (backward-compatible)
+
+
+2. Tilde (~)
+
+"dependencies": {
+  "express": "~4.17.1"
+}
+
+
+What it means:
+Allows updates for patch versions only, but not minor or major.
+Example: ~4.17.1 will allow updates up to 4.17.x, but not 4.18.0 or 5.0.0.
+
+Q) What is node modules?
+-> node_modules is a folder in a Node.js project that stores all installed dependencies (packages) required for the project. 
+It is created when you run: npm install
+
+How it Works?
+1. When you install a package using npm install <package-name>, npm downloads it from the npm registry and saves it inside the node_modules folder.
+2. The dependencies listed in package.json are installed in this folder.
+3. It also contains sub-dependencies (dependencies of the installed packages).
+
+Why is node_modules Important?
+It contains the actual code of the installed libraries, allowing your project to function properly.
+It helps manage dependencies without requiring every user to download them manually.
+
+Do We Need to Push node_modules to Git?
+❌ No! It is a large folder and can be regenerated anytime using npm install.
+✔️ Instead, we only keep package.json and package-lock.json in version control.
+
+How to Remove node_modules?
+If you want to free up space or reset dependencies, you can delete it using:
+rm -rf node_modules
+
+Then, reinstall dependencies using:
+npm install
+
+
+Q) What is npx?
+npx (Node Package Execute) is a command that runs Node.js packages without installing them globally. It comes with npm (Node Package Manager) version 5.2+ and later.
+
+It is used to execute a package.
+
+Q) Why use npx?
+Run packages without installing them globally
+
+Q) What does npx parcel index.html mean?
+parcel is a fast web application bundler.
+index.html is the entry point of the web application.
+
+npx parcel index.html
+
+Here index.html is the source 
+So the parcel goes to the source index.html and build the development build for our app and it hosts that development build to http://localhost:1234
+
+Starts a development server using Parcel.
+Bundles your project and serves it at a local URL (e.g., http://localhost:1234).
+Automatically reloads when you make changes.
+
+Q) When to use npx parcel index.html command?
+If you want to test a web project locally with Parcel.
+If you don’t want to install Parcel globally.
+
+
+Q) Way to use react in our app?
+
+One way is using CDN which is not a good way, as it is a costly affair as it does a network call.
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+It is for react 18, if a new versions comes up we will have to change it.
+
+The other way to use react is by installing it as a package in our app.
+
+The command to install react is npm install react  or  npm i react
+
+The command to install react dom is npm install react-dom or npm i react-dom
+
+
+
+
+
+
