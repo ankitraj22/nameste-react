@@ -349,3 +349,65 @@ React won't complain about it but the order of the item might change.
 If the unique id is not present then you can use index as a key but it is not recommended.
 
 
+#################### Episode 5 ####################
+
+Q) default export vs named export?
+-> You can do only one default export but multiple named exports.
+
+Default Export/Import
+export default Component;
+import Component from "path";
+
+Named Export/Import
+export const Component;
+import {Component} from "path";
+
+## We can use both named export and default import together.
+
+Q) What is React hooks?
+React Hooks are tools that help you manage state, add features, and share logic in React applications. 
+They are used in function components instead of class components. 
+
+Q) How do React Hooks work?
+useState: Allows you to use local state within a function component. 
+useEffect: Performs side effects in functional components, such as running a function after updating the DOM. 
+useRef: Returns a mutable ref object that persists for the lifetime of the component. 
+useReducer: An alternative to useState for complex state management. 
+useContext: Allows functional components to access the React Context API and share data across the component tree. 
+
+
+const [name of the variable] = useState([]);
+
+If you want to modify the variable you need to give a function as 2nd parameter in the array.
+
+const [name of the variable, setVariable] = useState([]);
+You can give any name you want in place of setVariable.
+
+Whenever a state variable updates, react re-render the component.
+
+It does it using Reconciliation algorithm(React Fiber -> it came in React 16)
+
+React creates a virtual domain and Diff algorithm finds the difference between the old and new virtual dom.
+It calculates the difference and then actually update the Dom.
+A virtual Dom is representation of the actual Dom.
+
+As soon as you call the setter function, which is setVariable in our case, it will find the diff and update the dom.
+
+
+
+
+#################### Episode 6 #####################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
