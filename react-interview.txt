@@ -14,6 +14,14 @@ React.createElement(...) -> it creates an object for me.
 While it is rendering on the Dom, it converts itself into an HTML and 
 Puts it up into the Dom.
 
+Q) React.createElement()?
+-> it takes 3 argument.
+1. Name of the tag
+2. Object which will go as an attributes
+3. Children of the tag
+
+const heading = React.createElement("h1", { id: "heading" }, "Namaste React 🚀");
+
 Q) Does the order of execution matters?
 -> yes it matters.
 
@@ -34,7 +42,7 @@ Q) What is a pacrcel?
 A bundler is a development tool that combines many JavaScript code files 
 into a single one that is production-ready loadable in the browser
 
-It is installed with this command rpm install -D parcel
+It is installed with this command npm install -D parcel
 
 Where -D tells us that we need it as dev dependency and not a normal dependency.
 
@@ -233,5 +241,111 @@ The command to install react dom is npm install react-dom or npm i react-dom
 
 
 
+############ EPISODE 3 ######################
+
+Q) What does npm run start or npm start does?
+-> It runs the start script which is to run the application npx parcel index.html
+We write this script in package.json
+
+"scripts": {
+    "start":"parcel index.html",
+    "build":"parcel build index.html",
+    "test": "jest"
+  }
+
+Q) What does npm run build does?
+-> It runs the build script which is to run the application npx parcel build index.html
+We write this script in package.json
+
+"scripts": {
+    "start":"parcel index.html",
+    "build":"parcel build index.html",
+    "test": "jest"
+  }
+
+
+Q) What is a JSX?
+JSX is a JavaScript syntax which is easier to create a react element.
+### JSX is not an HTML inside java script.
+JSX is a HTML like syntax.
+
+Q) What is a java script?
+A javascript is a code that a JS engine can understand.
+JS engine understands ECMAScript 
+
+const heading = React.createElement("h1", { id: "heading" }, "Namaste React 🚀");
+JS engine doesn't understand this, parcel is doing the job behind the scene, it is done by the package Babel
+Babel is present in the node_module folder and is installed by parcel.
+It transpile the code  before sending it to the JS engine and the JS engine receives the 
+Code that the browser can understand.
+
+JXS code is converted to React.createElement() behind the scene and this react element (which is a JS object) is rendered on to Dom as an HTML Element.
+You can check by coding at babeljs.io
+
+Q) What Is Transpiling? 
+Transpilation, a portmanteau of transformation and compilation, is the process of converting source code from one high-level programming language to another.
+
+Q) What are react components?
+1. Class based component - OLD way of writing code - It uses JavaScript classes to to create a component
+2. Functional Component - New way of writing code - It uses JavaScript function to to create a component
+
+Q) Why does React requires that the first letter of components be capitalized?
+JSX will use this capitalization to tell the difference between an HTML tag and a component instance. 
+If the first letter of a name is capitalized, then JSX knows it's a component instance; if not, then it's an HTML element.
+
+Q) React Functional Component?
+It is a normal JavaScript function which returns a piece of JSX element.
+
+Q) What is a component composition?
+"Component composition" refers to the practice of building complex user interfaces by combining smaller, 
+reusable components together, essentially acting like building blocks to create a larger, more intricate 
+structure within a software application, promoting modularity, maintainability, and reusability of code. 
+
+
+Q) How does JSX prevent injection attacks - Cross site scripting?
+JSX (JavaScript XML) in React helps prevent injection attacks by automatically escaping any values embedded within JSX elements. 
+This means that React converts all embedded values to strings before rendering them, effectively neutralizing potentially malicious code.
+
+In React, "escaping" refers to the process of automatically converting special characters within a string to their HTML entity equivalents 
+before rendering them on the page, essentially preventing potential security vulnerabilities like Cross-Site Scripting (XSS) by ensuring that 
+any user-provided data is displayed as plain text rather than interpreted as HTML code; React does this by default for any values embedded in 
+JSX, effectively "escaping" potentially harmful characters. 
+
+
+Q) What is react props?
+Props - property is something that we can pass to the components.
+It is used to dynamically pass data to the component.
+Props are a normal argument to the function.
+
+
+Q) What is a config driven UI?
+A Config-Driven UI is a user interface (UI) that is dynamically generated based on configuration files (like JSON or YAML) instead of being hardcoded. 
+This makes the UI more flexible, reusable, and easy to update without changing the code.
+
+Benefits of Config-Driven UI
+✅ Flexibility – UI can be changed by updating the config file, without modifying the code.
+✅ Reusability – The same UI logic can generate different forms or screens based on different configs.
+✅ Faster Development – No need to manually create new UI components for each variation.
+✅ Easy Customization – Different UI versions can be maintained just by modifying configurations.
+
+Q) Why do we need to give key while looping?
+-> whenever we do the looping we should provide key.
+If you don't provide the key and a new element is added then react will render all of them, even the already present one.
+It will hit the performance.
+But if you have given the key already, it would only render the new one, because now react identifies the element and knows which is old and which is new.
+If you don't add key then react will throw a warning.
+
+{restList.map(
+(restaurant) => (<Restaurant key={restaurant.data.id} resData={restaurant}/>)
+)}
+
+### React says you should not use index as a key
+
+{restList.map(
+(restaurant, index) => (<Restaurant key={index} resData={restaurant}/>)
+)}
+
+React won't complain about it but the order of the item might change.
+If the unique id is not present then you can use index as a key but it is not recommended.
 
 
