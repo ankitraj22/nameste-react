@@ -398,13 +398,71 @@ As soon as you call the setter function, which is setVariable in our case, it wi
 
 #################### Episode 6 #####################
 
+Q) What is Optional Chaining (?.) in JavaScript?
+Optional chaining (?.) is a feature in JavaScript that allows you to safely access nested object properties without causing an error if a property is null or undefined.
+
+Normally, accessing a deeply nested property in JavaScript without checking each level can cause an error:
+
+let user = {};  
+console.log(user.profile.name);  // ❌ Error: Cannot read properties of undefined
 
 
+With optional chaining (?.), JavaScript stops checking further if a property is null or undefined and returns undefined instead of throwing an error.
+
+console.log(user?.profile?.name);  // ✅ undefined (No error)
 
 
+Q) How to Use Optional Chaining?
+
+1. Accessing Object Properties
+
+let user = { profile: { name: "Alice" } };
+
+console.log(user?.profile?.name);  // ✅ "Alice"
+console.log(user?.address?.city);  // ✅ undefined (No error)
+
+2. Accessing Array Elements
+
+let users = [{ name: "John" }, { name: "Doe" }];
+
+console.log(users?.[0]?.name);  // ✅ "John"
+console.log(users?.[5]?.name);  // ✅ undefined (No error)
+
+3. Calling Functions
+If a function may not exist, ?.() prevents an error.
+
+let user = { greet: () => "Hello!" };
+
+console.log(user.greet?.());  // ✅ "Hello!"
+console.log(user.sayGoodbye?.());  // ✅ undefined (No error)
+
+4. Accessing Properties in Maps & DOM Elements
+
+let map = new Map();
+map.set("key1", "value1");
+
+console.log(map.get?.("key1"));  // ✅ "value1"
+console.log(document.querySelector(".non-existent")?.innerText);  // ✅ undefined
+
+Benefits of Optional Chaining
+✅ Prevents errors – No need for if checks before accessing nested properties.
+✅ Simplifies code – Reduces unnecessary if-else or && conditions.
+✅ Safer access – Works with objects, arrays, functions, and DOM elements.
 
 
+Q) When Not to use Optional Chaining?
+If you expect a property to always exist, avoid ?. (because it hides errors).
+If an object must have a valid value, handle it with proper checks instead.
 
+
+Q) what is a shimmer ui?
+Shimmer UI is a user interface (UI) that uses a gradient animation to mimic the appearance of content that will load. It's often used to indicate that a page or app is loading. 
+
+
+Q) useState variable is const so how we are able to change it?
+When you call the set method of the useState const variable then react re-render the whole component and it creates a new variable with the new value. 
+That's why we are able to change it.
+In re-rendring the diff algorithm works and checks what have changed and changed component will be refreshed.
 
 
 
